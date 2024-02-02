@@ -1,0 +1,86 @@
+---
+type Props = Record<string, never>;
+---
+<button
+  class="menu-button"
+  aria-label="Open Menu"
+  aria-expanded="false"
+  aria-controls="menu-items"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="menu-icon"
+  >
+    <line x1="7" y1="12" x2="21" y2="12" class="line"></line>
+    <line x1="3" y1="6" x2="21" y2="6" class="line"></line>
+    <line x1="12" y1="18" x2="21" y2="18" class="line"></line>
+    <line x1="18" y1="6" x2="6" y2="18" class="close"></line>
+    <line x1="6" y1="6" x2="18" y2="18" class="close"></line>
+  </svg>
+</button>
+<style>
+  .menu-button {
+    align-self: flex-end;
+    padding: 0.5rem;
+  }
+
+  .menu-icon {
+    fill: var(--color-text);
+    height: 1.5rem;
+    width: 1.5rem;
+    transform: scale(1.25);
+  }
+
+  .line {
+    opacity: 1;
+  }
+
+  .close {
+    opacity: 0;
+  }
+
+  .menu-button[aria-expanded='true'] .line {
+    opacity: 0;
+  }
+
+  .menu-button[aria-expanded='true'] .close {
+    opacity: 1;
+  }
+
+  @media (min-width: 40rem) {
+    .menu-button {
+      display: none;
+    }
+  }
+</style>
+<script>
+  function setupMenu() {
+    const menuButton = document.querySelector('.menu-button');
+    const menuIcon = document.querySelector('.menu-icon');
+    const menuItems = document.querySelector('#menu-items');
+    if (!menuButton || !menuIcon || !menuItems) {
+      return;
+    }
+
+    menuButton?.addEventListener('click', function() {
+      if (menuButton.getAttribute('aria-expanded') === 'false') {
+        menuButton.setAttribute('aria-expanded', 'true');
+        menuButton.setAttribute('aria-label', 'Close Menu');
+        menuItems.classList.add('js-menu-active');
+      } else {
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open Menu');
+        menuItems.classList.remove('js-menu-active');
+      }
+    });
+  }
+  setupMenu();
+</script>

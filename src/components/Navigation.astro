@@ -1,53 +1,67 @@
 ---
+import Hamburger from './Header/Hamburger.astro';
+
 type Props = Record<string, never>;
 ---
-<div transition:animate="slide" class="nav-links">
-  <a href="/">Home</a>
-  <a href="/about/">About</a>
-  <a href="/blog/">Blog</a>
-  <a href="/tags/">Tags</a>
-</div>
+<nav class="nav">
+  <Hamburger />
+  <ul class="nav-list" id="menu-items">
+    <li>
+      <a href="/blog/" class="nav-link">Posts</a>
+    </li>
+    <li>
+      <a href="/tags/" class="nav-link">Tags</a>
+    </li>
+    <li>
+      <a href="/about/" class="nav-link">About</a>
+    </li>
+  </ul>
+</nav>
 <style>
-.nav-links {
-  width: 100%;
-  top: 5rem;
-  left: 48px;
-  background-color: #ff9776;
-  display: none;
-  margin: 0;
-}
-
-.nav-links a {
-  display: block;
-  text-align: center;
-  padding: 10px 0;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.nav-links a:hover,
-.nav-links a:focus {
-  background-color: #ff9776;
-}
-
-.expanded {
-  display: unset;
-}
-
-@media screen and (min-width: 636px) {
-  .nav-links {
-    margin-left: 5em;
-    display: block;
-    position: static;
-    width: auto;
-    background: none;
+  .nav {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
-  .nav-links a {
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 1rem 0;
+    width: 11rem;
+  }
+
+  .nav-list.js-menu-active {
+    display: flex;
+  }
+
+  .nav-link {
     display: inline-block;
-    padding: 15px 20px;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    width: 100%;
   }
-}
+  .nav-link:hover {
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 40rem) {
+    .nav {
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-left: 0.5rem;
+    }
+    .nav-list {
+      display: flex;
+      flex-direction: row;
+      margin: 0;
+      width: auto;
+    }
+    .nav-link {
+      padding: 0.25rem 0.5rem;
+    }
+  }
 </style>
