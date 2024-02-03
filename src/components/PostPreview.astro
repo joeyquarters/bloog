@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { niceDate, toISODate } from '../utils'
+
+interface Props {
+  post: CollectionEntry<'posts'>
+}
+
+const { post } = Astro.props
+---
+<article class="post">
+  <a href={`/posts/${post.slug}/`} class="post-title">
+    {post.data.title}
+  </a>
+  <time datetime={toISODate(post.data.pubDate)} class="post-time">
+    {niceDate(post.data.pubDate)}
+  </time>
+  <p class="post-description">{post.data.description}</p>
+</article>
+<style>
+  .post-title {
+    display: block;
+    font-size: 1.125em;
+    font-weight: 500;
+    line-height: 1.75;
+  }
+  .post-title:visited {
+    color: var(--color-link-visited);
+  }
+
+  .post-time {
+    display: block;
+    margin-bottom: 0.25em;
+    opacity: 0.65;
+  }
+
+  .post-description {
+    margin: 0 0 0.25em;
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Layout from "./Layout.astro";
+import { niceDate, toISODate } from "../utils";
+
+interface Props {
+  postData: CollectionEntry<'posts'>['data'];
+}
+
+const { postData } = Astro.props;
+---
+<Layout title={postData.title} description={postData.description}>
+  <article>
+    <div>
+      <h1>{postData.title}</h1>
+      <em>
+        <time datetime={toISODate(postData.pubDate)}>
+          {niceDate(postData.pubDate)}
+        </time>
+      </em>
+    </div>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</Layout>
+<style>
+  .title {
+
+  }
+</style>

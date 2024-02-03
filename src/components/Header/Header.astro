@@ -1,29 +1,28 @@
 ---
-import Navigation from "../Navigation.astro"
+import Navigation from "./Navigation.astro"
 import SkipLink from "./SkipLink.astro";
 
 type Props = Record<string, never>;
 ---
-<header>
+<header class="container header">
   <SkipLink />
-  <div class="container header-inner">
-    <a href="/" class="logo">
-      Joey's Blog
-    </a>
-    <Navigation />
-  </div>
+  <a href="/" class="logo">
+    Joey's blog
+  </a>
+  <Navigation />
 </header>
 <style>
-  .header-inner {
+  .header {
     align-items: flex-start;
     border-bottom: 1px solid var(--color-border);
     display: flex;
     justify-content: space-between;
     position: relative;
-    padding: 1rem;
+    padding: 1rem 0;
   }
 
   .logo {
+    color: var(--color-text);
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 600;
@@ -31,10 +30,14 @@ type Props = Record<string, never>;
     position: absolute;
     white-space: nowrap;
   }
+  .logo:hover {
+    text-decoration: none;
+  }
 
   @media (min-width: 40rem) {
-    .header-inner {
-      padding: 2rem 1rem;
+    .header {
+      align-items: center;
+      padding: 2rem 0;
     }
 
     .logo {

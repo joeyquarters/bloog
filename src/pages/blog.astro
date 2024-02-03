@@ -1,21 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import PostList from '../components/PostList.astro';
 
 const allPosts = await getCollection('posts');
 ---
 
-<Layout title="Blog">
-  <main>
-    <h1>The <span class="text-gradient">BLOOG</span></h1>
-    <ul role="list" class="link-card-grid">
-      {allPosts.map((post) => (
-        <li>
-          <a href={`/posts/${post.slug}/`}>
-            {post.data.title}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </main>
+<Layout title="Joey's blog" description="All blog posts">
+  <PostList posts={allPosts} />
 </Layout>

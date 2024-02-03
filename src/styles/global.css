@@ -1,9 +1,11 @@
 :root {
   --color-accent: rgb(0, 108, 172);
   --color-border: rgb(236, 233, 233);
-  --color-fill: rgb(251, 254, 251);
-  --color-text: rgb(40, 39, 40);
-  --max-width: 48rem;
+  --color-fill: rgb(252, 252, 255);
+  --color-text: rgb(39, 39, 40);
+  --color-link: var(--color-accent);
+  --color-link-hover: rgb(0, 170, 172);
+  --color-link-visited: rgb(139, 111, 203);
 }
 
 /**
@@ -15,11 +17,6 @@
 ::before,
 ::after {
   box-sizing: border-box;
-}
-
-/* Remove default margin */
-* {
-  margin: 0;
 }
 
 /* Typographic improvements */
@@ -62,14 +59,31 @@ h6 {
  */
 
 body {
-  font-size: 16px;
-  font-family: "IBM Plex Mono", monospace;
   background-color: var(--color-fill);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 16px;
+  margin: 0 auto;
+  max-width: 80ch;
+  padding: 0 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text);
+  line-height: 1.25;
 }
 
 a {
-  color: inherit;
-  text-decoration: inherit;
+  color: var(--color-link);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
 }
 
 ol,

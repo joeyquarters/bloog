@@ -1,9 +1,28 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import PostList from '../components/PostList.astro';
+
+const title = "Joey's blog";
+const description = "A collection of musings and ramblings."
+
+const allPosts = await getCollection('posts');
+const recentPosts = allPosts.slice(0, 3);
 ---
 
-<Layout title="MY BLOOG">
-  <main>
-    <h1>Welcome to MY BLOOG</h1>
-  </main>
+<Layout title={title} description={description}>
+  <section class="hero">
+    <h1>Hey, I'm Joey Nichols.</h1>
+    <p class="lead">I like exercise, sunshine, computers, and lists.</p>
+    <p>This is my blog. Maybe I'll write something interesting, or maybe I'll just tinker with how it's built :)</p>
+  </section>
+  <section class="posts">
+    <h3>Recent Posts</h3>
+    <PostList posts={recentPosts} />
 </Layout>
+<style>
+  .lead {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+</style>

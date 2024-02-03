@@ -1,5 +1,5 @@
 ---
-import Hamburger from './Header/Hamburger.astro';
+import Hamburger from './Hamburger.astro';
 
 type Props = Record<string, never>;
 ---
@@ -11,9 +11,6 @@ type Props = Record<string, never>;
     </li>
     <li>
       <a href="/tags/" class="nav-link">Tags</a>
-    </li>
-    <li>
-      <a href="/about/" class="nav-link">About</a>
     </li>
   </ul>
 </nav>
@@ -44,9 +41,9 @@ type Props = Record<string, never>;
     text-align: center;
     width: 100%;
   }
-  .nav-link:hover {
-    color: var(--color-accent);
-  }
+  /* .nav-link:visited {
+    color: unset;
+  } */
 
   @media (min-width: 40rem) {
     .nav {
